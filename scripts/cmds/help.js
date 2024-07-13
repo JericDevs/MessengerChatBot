@@ -49,6 +49,41 @@ animagine: {
     description: "View all commands",
     guide: "-help\n-help <command name>"
   },
+  rules: {
+    name: "rules",
+    description: "View the rules",
+    guide: "rules"
+  },
+  kick: {
+    name: "kick",
+    description: "kick a member (only admin)",
+    guide: "kick"
+  },
+  listbox: {
+    name: "listbox",
+    description: "show all groups of bot",
+    guide: "listbox"
+  },
+  marry: {
+    name: "marry",
+    description: "marry a random user",
+    guide: "marry @mention"
+  },
+  membercount: {
+    name: "membercount",
+    description: "show the total of members",
+    guide: "membercount"
+  },
+  shoti: {
+    name: "shoti",
+    description: "show shoti videos",
+    guide: "shoti"
+  },
+  teach: {
+    name: "teach",
+    description: "teach him what he will reply",
+    guide: "teach"
+  },
   prefix: {
     name: "prefix",
     description: "view some commands and shows bot's prefix",
@@ -95,18 +130,19 @@ module.exports = {
 │ - Dalle
 │ - Pinterest
 │ - Remini
+│ - Rules
 │ - Lyrics
 │ - Alldl
 │ - Help
 │ - Prefix
 │ - Tempmail
-│ - Unsend
-│ - Uptime
-│ - Uptime
-│ - Uptime
-│ - Uptime
-│ - Uptime
-│ - Rules
+│ - Kick
+│ - Listbox
+│ - Marry
+│ - Membercount
+│ - Shoti
+│ - Sim
+│ - Teach
 │ - Uptime
 ╰─━━━━━━━━━╾─╯
 -𝚑𝚎𝚕𝚙 <𝚌𝚘𝚖𝚖𝚊𝚗𝚍 𝚗𝚊𝚖𝚎>
