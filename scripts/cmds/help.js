@@ -135,6 +135,7 @@ module.exports = {
 │ - Pair
 │ - Lyrics
 │ - Alldl
+│ - CallAdd
 │ - Help
 │ - Prefix
 │ - Tempmail
