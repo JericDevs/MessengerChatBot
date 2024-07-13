@@ -125,12 +125,14 @@ module.exports = {
 𝙰𝚟𝚊𝚒𝚕𝚊𝚋𝚕𝚎 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜:
 ╭─╼━━━━━━━━╾─╮
 │ - AI
+│ - AdminOnly
 │ - Translate
 │ - Animagine
 │ - Dalle
 │ - Pinterest
 │ - Remini
 │ - Rules
+│ - Pair
 │ - Lyrics
 │ - Alldl
 │ - Help
