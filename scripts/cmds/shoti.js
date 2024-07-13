@@ -1,60 +1,72 @@
-const path = require("path");
 const axios = require("axios");
 const fs = require("fs");
-const { GoatWrapper } = require('fca-liane-utils');
+const request = require("request");
 
 module.exports = {
-	config: {
-		name: "shoti",
-		version: "9",
-		credits: "Eugene Aguilar",
-		shortDscription: "Generate random shoti 😝",
-		commandCategory: "media",
-		hasPermssion: 0,
-		cooldowns: 9,
-	 countDown: 9,
-		category: "None",
-		usages: "[shoti]",
-		role: 0,
-		hasPrefix: false,
-		author: "Cliff",
-		countDown: 5,
-	},
+  config: {
+    name: "shoti",
+    version: "1.0",
+    author: "Ronald Allen Albania",
+    countDown: 20,
+    category: "chatbox",
+  },
 
-	onStart: async function ({ api, message, event, args }) {
-		try {
-			api.setMessageReaction("🕥", event.messageID, (err) => {}, true);
+  langs: {
+    vi: {},
+    en: {},
+  },
 
-			const response = await axios.post(`https://shotiapi.onrender.com/api/request/f`);
+  onStart: async function ({ api, event }) {
+    api.sendMessage("Fetching a short video from Shoti...", event.threadID);
 
-			const video = response.data.data.eurixmp4;
-			const username = response.data.data.username;
-			const nickname = response.data.data.nickname;
-			const title = response.data.data.title;
+    try {
+      let response = await axios.post(
+        "https://shoti-srv1.onrender.com/api/v1/get",
+        {
+          apikey: "shoti-1ha4h3do8at9a7ponr",
+        },
+      );
 
-			const videoPath = path.join(__dirname, "cache", "eabab.mp4");
+      if (
+        response.data.code === 200 &&
+        response.data.data &&
+        response.data.data.url
+      ) {
+        const videoUrl = response.data.data.url;
+        const filePath = __dirname + "/cache/shoti.mp4";
+        const file = fs.createWriteStream(filePath);
+        const rqs = request(encodeURI(videoUrl));
 
-			const videoResponse = await axios.get(video, { responseType: "arraybuffer" });
+        rqs.pipe(file);
 
-			fs.writeFileSync(videoPath, Buffer.from(videoResponse.data));
+        file.on("finish", async () => {
+          const userInfo = response.data.data.user;
+          const username = userInfo.username;
+          const nickname = userInfo.nickname;
 
-			api.setMessageReaction("✅", event.messageID, (err) => {}, true);
-
-			await api.sendMessage(
-				{
-					body: `Here is your shoti video:\nProvided by: Jeric Pogi\n\nUsername: ${username}\nNickname: ${nickname}\nTitle: ${title}`,
-					attachment: fs.createReadStream(videoPath),
-				},
-				event.threadID,
-				event.messageID
-			);
-			fs.unlinkSync(videoPath);
-		} catch (error) {
-			api.sendMessage(`error: ${error.message}`, event.threadID, event.messageID);
-			console.log(error);
-		}
-	}
+          await api.sendMessage(
+            {
+              attachment: fs.createReadStream(filePath),
+            },
+            event.threadID,
+          );
+          api.sendMessage(
+            `Username: @${username}\nNickname: ${nickname}`,
+            event.threadID,
+          );
+        });
+      } else {
+        api.sendMessage(
+          "No video URL found in the API response.",
+          event.threadID,
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      api.sendMessage(
+        "An error occurred while fetching the video.",
+        event.threadID,
+      );
+    }
+  },
 };
-
-const wrapper = new GoatWrapper(module.exports);
-wrapper.applyNoPrefix({ allowPrefix: true });
