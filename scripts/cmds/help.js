@@ -101,6 +101,11 @@ module.exports = {
 │ - Prefix
 │ - Tempmail
 │ - Unsend
+│ - Uptime
+│ - Uptime
+│ - Uptime
+│ - Uptime
+│ - Uptime
 │ - Rules
 │ - Uptime
 ╰─━━━━━━━━━╾─╯
