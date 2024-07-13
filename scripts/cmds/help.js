@@ -141,6 +141,7 @@ module.exports = {
 │ - Marry
 │ - Membercount
 │ - Shoti
+│ - Shoti2
 │ - Sim
 │ - Teach
 │ - Uptime
