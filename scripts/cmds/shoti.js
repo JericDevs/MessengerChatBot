@@ -23,7 +23,7 @@ module.exports = {
       let response = await axios.post(
         "https://shoti-srv1.onrender.com/api/v1/get",
         {
-          apikey: "shoti-1ha4h3do8at9a7ponr",
+          apikey: "$shoti-1i2l2p9m4h0to8c4em",
         },
       );
 
